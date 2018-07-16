@@ -1,3 +1,18 @@
+
+function Login ()
+{
+    if(empty($_POST['username'))
+    {
+        $this->HandleError("Username is empty!");
+        return false;
+    }
+}
+
+
+
+
+
+
 // BUDGET CONTROLLLER
 var budgetController = (function () {
 
@@ -411,8 +426,7 @@ var UIController = (function () {
             
             
             now = new Date();
-            // note: month is zero based, so use 11 to get December; 12 will return Jan 25, 2017
-            // var Christmas = new Date(2016, 11, 25); 
+       
             months = [
                 'January',
                 'February',
@@ -429,7 +443,7 @@ var UIController = (function () {
             ];
             month = now.getMonth();
             year = now.getFullYear();
-            document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
+            // document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
         },
         
         changedType: function() {
@@ -479,10 +493,10 @@ var controller = (function (budgetCntrl, UICntrl) {
         });
         
         
-        // use event delegation to the parent .container
+        // event delegation to the parent .container
         document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
         
-        // use change event to update highlight color of input fields for expense entries
+        // change event to update highlight color of input fields for expense entries
         document.querySelector(DOM.inputType).addEventListener('change', UICntrl.changedType);
         
         
@@ -491,13 +505,13 @@ var controller = (function (budgetCntrl, UICntrl) {
     
      var updateBudget = function(){
         
-        // 1. Calculate the budget
+        //Calculate the budget
         budgetCntrl.calculateBudget();
         
-        // 2. Return the budget
+        // Return the budget
         var budget = budgetCntrl.getBudget();
         
-        // 3. Display the budget on the UI
+        // Display the budget on the UI
         // console.log(budget);
         // pass the budget object as a parameter to the displayBudget method b/c it's looking for an obj argument
         UICntrl.displayBudget(budget);
@@ -507,13 +521,13 @@ var controller = (function (budgetCntrl, UICntrl) {
     
     var updateExpPercentages = function() {
         
-        // 1. Calculate percentages
+        // Calculate percentages
         budgetCntrl.calculatePercentages();
         
-        // 2. Read percentages from budget controller
+        // Read percentages from budget controller
         var percentages = budgetCntrl.getPercentages();
         
-        // 3. Update the UI
+        // Update the UI
         // console.log(percentages); // this is an array
         UICntrl.displayPercentages(percentages);
         
